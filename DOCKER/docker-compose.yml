@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      SUPABASE_URL: "https://zeinehovdolydnoecaot.supabase.co"
+      SUPABASE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InplaW5laG92ZG9seWRub2VjYW90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUyOTY3NjUsImV4cCI6MjA0MDg3Mjc2NX0.yycbSmmNyGT3JDpBJ3jDFP8kTW8t_5wvEaowBAHuWDI"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+
+volumes:
+  logs:
