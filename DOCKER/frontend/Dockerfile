@@ -1,4 +1,4 @@
-# Use a node base image with a lightweight version of Node.js
+# Use a lightweight Node.js base image
 FROM node:18-alpine
 
 # Set the working directory in the container
@@ -12,6 +12,9 @@ RUN npm install
 
 # Copy the rest of the application code
 COPY . .
+
+# Set the OpenSSL legacy provider for Node.js
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Build the React application
 RUN npm run build
